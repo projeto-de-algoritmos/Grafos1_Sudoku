@@ -5,8 +5,8 @@
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| 200035703  |  Breno Alexandre Soares Garcia |
-| xx/xxxxxx  |  Limírio Guimarães |
+| 20/0035703  |  Breno Alexandre Soares Garcia |
+| 20/0040201  |  Limírio Correia Guimarães |
 
 ## Sobre 
 Sudoku-Grafo é um projeto que implementa um jogo de sudoku em Python, utilizando a estrutura de dados de grafo para representar e resolver a grade do jogo. O projeto usa a biblioteca networkx para manipular grafos e a biblioteca pygame para criar a interface gráfica do jogo.
