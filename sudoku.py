@@ -13,6 +13,17 @@ for i in range(9):
         grafo_tabuleiro.add_node((i, j))
         # Iniciando o elemento do grafo com 0
         grafo_tabuleiro.nodes[i, j][repr(int)] = 0
+# Criando as arestas dos nós do grafo
+for i in range(9):
+    for j in range(9):
+        if i > 0:
+            grafo_tabuleiro.add_edge((i, j), (1-i, j))
+        if i < 8:
+            grafo_tabuleiro.add_edge((i, j), (1+i, j))
+        if j > 0:
+            grafo_tabuleiro.add_edge((i, j), (i, 1-j))
+        if j < 8:
+            grafo_tabuleiro.add_edge((i, j), (i, 1+j))
 
 tela = pygame.display.set_mode((725, 725))
 pygame.display.set_caption('Sudoku')
