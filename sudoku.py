@@ -1,5 +1,6 @@
 import networkx as nx
 import pygame
+import tabuleiros
 from pygame.locals import *
 from sys import exit
 
@@ -78,6 +79,7 @@ def desenhar_tabuleiro():
 
 
 while True:
+    tabuleiros.tabuleiro_fixo(grafo_tabuleiro)
     desenhar_tabuleiro()
     for event in pygame.event.get():
         if event.type == QUIT:
