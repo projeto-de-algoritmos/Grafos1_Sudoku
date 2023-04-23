@@ -33,10 +33,11 @@ pygame.display.set_caption('Sudoku')
 branco = (255, 255, 255)
 cinza_claro = (220, 220, 220)
 cinza_escuro = (170, 170, 170)
-vermelho = (255, 0, 0)
+azul = (0, 0, 200)
 preto = (0, 0, 0)
 # define tamanho e qual fonte iremos utilizar em algumas strings
 fonte = pygame.font.SysFont('Arial', 40)
+fonte2 = pygame.font.SysFont('Arial', 40, bold=True)
 # define o fundo da tela como branco
 tela.fill((255, 255, 255))
 # Definição do tamanho em píxeis de cada quadrado do tabuleiro, no caso 50x50
@@ -70,7 +71,12 @@ def desenhar_tabuleiro():
             # renderizar na tela o número de cada elemento da matriz
             if grafo_tabuleiro.nodes[(i, j)][repr(int)] != 0:  # verifica se a posição (i, j), do tabuleiro difere de 0
                 # gera uma string com o número que o player digitou
-                numero = fonte.render(str(grafo_tabuleiro.nodes[(i, j)][repr(int)]), True, preto)
+                if tabuleiros.verificar_coordenadas(i, j):  # Verifica se o número atual é fixo ou não
+                    # Renderiza o número fixo
+                    numero = fonte2.render(str(grafo_tabuleiro.nodes[(i, j)][repr(int)]), True, preto)
+                else:
+                    # Renderiza o número que o player digitou
+                    numero = fonte.render(str(grafo_tabuleiro.nodes[(i, j)][repr(int)]), True, azul)
                 # a função caixa_de_numero cria um quadrado que pode renderizar texto, é já define o número a ser
                 # exibido no centro do retângulo selecionado
                 caixa_de_numero = numero.get_rect(center=(x + (tamanho_quadrado / 2), y + (tamanho_quadrado / 2)))
