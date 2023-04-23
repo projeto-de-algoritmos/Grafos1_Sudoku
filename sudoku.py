@@ -11,9 +11,7 @@ grafo_tabuleiro = nx.Graph()
 for i in range(9):
     for j in range(9):
         grafo_tabuleiro.add_node((i, j))
-# Iniciando cada elemento do grafo com 0
-for i in range(9):
-    for j in range(9):
+        # Iniciando o elemento do grafo com 0
         grafo_tabuleiro.nodes[i, j][repr(int)] = 0
 
 tela = pygame.display.set_mode((725, 725))
