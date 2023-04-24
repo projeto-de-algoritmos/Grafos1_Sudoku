@@ -1,13 +1,13 @@
-import networkx as nx
-import pygame
+import telas_de_verificacao
 import tabuleiros
+import networkx
+import pygame
 from pygame.locals import *
 from sys import exit
 
 pygame.init()
-
 # Criando grafo que representa uma matriz 9x9 para gerar as posições dos elementos numéricos do sudoku
-grafo_tabuleiro = nx.Graph()
+grafo_tabuleiro = networkx.Graph()
 # Adicionando os nós dentro do grafo
 for i in range(9):
     for j in range(9):
@@ -18,13 +18,13 @@ for i in range(9):
 for i in range(9):
     for j in range(9):
         if i > 0:
-            grafo_tabuleiro.add_edge((i, j), (1-i, j))
+            grafo_tabuleiro.add_edge((i, j), (1 - i, j))
         if i < 8:
-            grafo_tabuleiro.add_edge((i, j), (1+i, j))
+            grafo_tabuleiro.add_edge((i, j), (1 + i, j))
         if j > 0:
-            grafo_tabuleiro.add_edge((i, j), (i, 1-j))
+            grafo_tabuleiro.add_edge((i, j), (i, 1 - j))
         if j < 8:
-            grafo_tabuleiro.add_edge((i, j), (i, 1+j))
+            grafo_tabuleiro.add_edge((i, j), (i, 1 + j))
 
 tela = pygame.display.set_mode((725, 725))
 pygame.display.set_caption('Sudoku')
@@ -45,7 +45,7 @@ tamanho_quadrado = 75
 # Espaçamento entre os retângulos do tabuleiro de sudoku
 espacamento = 5
 # iniciando uma célula como selecionado, para não quebrar a função
-i_sel, j_sel = 0, 0
+i_atual, j_atual = 0, 0
 
 
 # Função para desenhar o tabuleiro
@@ -84,6 +84,13 @@ def desenhar_tabuleiro():
                 tela.blit(numero, caixa_de_numero)
 
 
+def verificar_entrada(grafo_tabuleiro):
+    if grafo_tabuleiro.nodes[(0, 7)][repr(int)] == 9:
+        return True
+    else:
+        return False
+
+
 while True:
     tabuleiros.tabuleiro_fixo(grafo_tabuleiro)
     desenhar_tabuleiro()
@@ -94,13 +101,19 @@ while True:
         elif event.type == KEYDOWN:  # verifica se alguma tecla foi pressionada
             if event.unicode.isdigit():
                 # atualiza o valor dentro da célula da matriz de elementos do tabuleiro, conforme o valor digitado
-                grafo_tabuleiro.nodes[(i_sel, j_sel)][repr(int)] = int(event.unicode)
+                grafo_tabuleiro.nodes[(i_atual, j_atual)][repr(int)] = int(event.unicode)
+            elif event.key == K_RETURN:  # verifica se a tecla enter foi pressionada
+                # chama a função que verifica a resposta fornecida pelo player
+                if verificar_entrada(grafo_tabuleiro):
+                    telas_de_verificacao.tela_vitoria()
+                else:
+                    telas_de_verificacao.tela_resposta_errada()
         # verifica em qual quadrado o player clicou
         elif event.type == MOUSEBUTTONDOWN:
             # atualiza as coordenadas da célula selecionada
             posicao_mouse = pygame.mouse.get_pos()
             # [1] representa o eixo y
-            i_sel = (posicao_mouse[1] - espacamento) // (tamanho_quadrado + espacamento)
+            i_atual = (posicao_mouse[1] - espacamento) // (tamanho_quadrado + espacamento)
             # [0] representa o eixo x
-            j_sel = (posicao_mouse[0] - espacamento) // (tamanho_quadrado + espacamento)
+            j_atual = (posicao_mouse[0] - espacamento) // (tamanho_quadrado + espacamento)
     pygame.display.update()

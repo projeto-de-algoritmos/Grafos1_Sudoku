@@ -34,4 +34,3 @@ def verificar_coordenadas(i, j):
         return True
     else:
         return False
-
