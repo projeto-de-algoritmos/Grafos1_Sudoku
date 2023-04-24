@@ -85,6 +85,7 @@ def desenhar_tabuleiro():
 
 
 def verificar_entrada(grafo_tabuleiro):
+    # após implementar a verificação com grafos, remover essa função
     if grafo_tabuleiro.nodes[(0, 7)][repr(int)] == 9:
         return True
     else:
