@@ -16,7 +16,7 @@ Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 ## Instalação 
 **Linguagem**: Python<br>
-**Framework**: networkx<br>
+**Framework**: networkx, pygame, tkinter<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
 ## Uso 
