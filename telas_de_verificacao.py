@@ -6,7 +6,7 @@ def tela_vitoria():
     # Criando a janela
     pop_up = tkinter.Tk()
     pop_up.title("Parabéns")
-    mensagem = "Parabéns você ganhou! :)"
+    mensagem = "Parabéns, você ganhou! :)"
     # Cria um label com a mensagem
     label = tkinter.Label(pop_up, text=mensagem, pady=10)
     label.pack()
