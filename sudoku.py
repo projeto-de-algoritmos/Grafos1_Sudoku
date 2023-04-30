@@ -1,3 +1,4 @@
+import bfs
 import telas_de_verificacao
 import tabuleiros
 import networkx
@@ -13,7 +14,8 @@ for i in range(9):
     for j in range(9):
         grafo_tabuleiro.add_node((i, j))
         # Iniciando o elemento do grafo com 0
-        grafo_tabuleiro.nodes[i, j][repr(int)] = 0
+        grafo_tabuleiro.nodes[i, j]['valor'] = 0
+
 # Criando as arestas dos nós do grafo
 for i in range(9):
     for j in range(9):
@@ -25,6 +27,7 @@ for i in range(9):
             grafo_tabuleiro.add_edge((i, j), (i, 1 - j))
         if j < 8:
             grafo_tabuleiro.add_edge((i, j), (i, 1 + j))
+
 
 tela = pygame.display.set_mode((725, 725))
 pygame.display.set_caption('Sudoku')
@@ -69,27 +72,20 @@ def desenhar_tabuleiro():
             cor = cinza_escuro if (i + j) % 2 == 0 else cinza_claro
             pygame.draw.rect(tela, cor, (x, y, tamanho_quadrado, tamanho_quadrado))
             # renderizar na tela o número de cada elemento da matriz
-            if grafo_tabuleiro.nodes[(i, j)][repr(int)] != 0:  # verifica se a posição (i, j), do tabuleiro difere de 0
+            if grafo_tabuleiro.nodes[(i, j)]['valor'] != 0:  # verifica se a posição (i, j), do tabuleiro difere de 0
                 # gera uma string com o número que o player digitou
                 if tabuleiros.verificar_coordenadas(i, j):  # Verifica se o número atual é fixo ou não
                     # Renderiza o número fixo
-                    numero = fonte2.render(str(grafo_tabuleiro.nodes[(i, j)][repr(int)]), True, preto)
+                    numero = fonte2.render(str(int(grafo_tabuleiro.nodes[(i, j)]['valor'])), True, preto)
                 else:
                     # Renderiza o número que o player digitou
-                    numero = fonte.render(str(grafo_tabuleiro.nodes[(i, j)][repr(int)]), True, azul)
+                    numero = fonte.render(str(int(grafo_tabuleiro.nodes[(i, j)]['valor'])), True, azul)
+
                 # a função caixa_de_numero cria um quadrado que pode renderizar texto, é já define o número a ser
                 # exibido no centro do retângulo selecionado
                 caixa_de_numero = numero.get_rect(center=(x + (tamanho_quadrado / 2), y + (tamanho_quadrado / 2)))
                 # adiciona na tela a caixa_de_numero
                 tela.blit(numero, caixa_de_numero)
-
-
-def verificar_entrada(grafo_tabuleiro):
-    # após implementar a verificação com grafos, remover essa função
-    if grafo_tabuleiro.nodes[(0, 7)][repr(int)] == 9:
-        return True
-    else:
-        return False
 
 
 while True:
@@ -102,10 +98,10 @@ while True:
         elif event.type == KEYDOWN:  # verifica se alguma tecla foi pressionada
             if event.unicode.isdigit():
                 # atualiza o valor dentro da célula da matriz de elementos do tabuleiro, conforme o valor digitado
-                grafo_tabuleiro.nodes[(i_atual, j_atual)][repr(int)] = int(event.unicode)
+                grafo_tabuleiro.nodes[(i_atual, j_atual)]['valor'] = int(event.unicode)
             elif event.key == K_RETURN:  # verifica se a tecla enter foi pressionada
                 # chama a função que verifica a resposta fornecida pelo player
-                if verificar_entrada(grafo_tabuleiro):
+                if bfs.verificar_entrada(grafo_tabuleiro):
                     telas_de_verificacao.tela_vitoria()
                 else:
                     telas_de_verificacao.tela_resposta_errada()
