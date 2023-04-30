@@ -1,12 +1,5 @@
 def verificar_entrada(grafo_tabuleiro):
     fila = []
-    for i in range(9):
-        for j in range(9):
-            if grafo_tabuleiro.nodes[(i, j)]['valor'] == 0:
-                fila.append((i, j))
-
-    while fila:
-        linha, coluna = fila.pop(0)
         if grafo_tabuleiro.nodes[(linha, coluna)]['valor'] == 0:
             for x in range(1, 10):
                 if numero_valido(grafo_tabuleiro, linha, coluna, x):
