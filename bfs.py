@@ -2,9 +2,8 @@
 def verificar_entrada(grafo_tabuleiro):
     # Cria uma fila para armazenar os nós a serem visitados
     fila = []
-    # Cria um conjunto para armazenar os nós já visitados
+    # Salva os nós já visitados
     visitados = set()
-    # Adiciona o primeiro nó na fila
     fila.append((0, 0))
     # Enquanto a fila não estiver vazia, repete o seguinte:
     while fila:
@@ -20,12 +19,11 @@ def verificar_entrada(grafo_tabuleiro):
             # Se o vizinho ainda não foi visitado, adiciona ele na fila
             if (k, l) not in visitados:
                 fila.append((k, l))
-    # Se todas as verificações passaram, o sudoku é válido
     return True
 
 
 def pega_vizinhos(i, j):
-    # Retorna uma lista com os índices dos vizinhos de um nó na mesma linha, coluna ou bloco 3x3
+    # Retorna uma lista com os índices dos vizinhos de um nó 
     vizinhos = []
     for k in range(9):
         if k != j:
