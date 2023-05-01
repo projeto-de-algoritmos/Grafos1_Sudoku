@@ -114,5 +114,3 @@ while True:
             # [0] representa o eixo x
             j_atual = (posicao_mouse[0] - espacamento) // (tamanho_quadrado + espacamento)
     pygame.display.update()
-
-#teste
