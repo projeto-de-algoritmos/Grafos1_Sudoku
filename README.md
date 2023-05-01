@@ -32,3 +32,6 @@ Sudoku-Grafo é um projeto que implementa um jogo de sudoku em Python, utilizand
 
 ## Uso
 Clicar em algum bloco para inserir número, e Enter para checar se a solução está correta.
+
+## Vídeo
+https://youtu.be/40x676tDbzs
