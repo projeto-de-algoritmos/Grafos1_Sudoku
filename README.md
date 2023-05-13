@@ -26,9 +26,9 @@ Sudoku-Grafo é um projeto que implementa um jogo de sudoku em Python, utilizand
 </div>
 
 ## Instalação 
-**Linguagem**: Python<br>
-**Framework**: networkx, pygame, tkinter<br>
-**Pré-requisitos**: Compilador de Python e ter as frameworks.
+**Linguagem:** Python<br>
+**Framework:** networkx, pygame, tkinter<br>
+**Pré-requisitos:** Compilador de Python e ter as frameworks.
 
 ## Uso
 Clicar em algum bloco para inserir número, e Enter para checar se a solução está correta.
